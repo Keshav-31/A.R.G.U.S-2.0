@@ -14,15 +14,24 @@ ros::Publisher chatter("angle",&ref_msg);
 
 int c ;
 int i=0;
+ 
+int actdir1=13;
+int actpwm1=12;
+int actdir2=11;
+int actpwm2=10;
 
-int actpwm1=12, actpwm2=11; 
-int actdir1=13, actdir2=10; 
+int gripdir1=9;
+int grippwm1=8;
+int gripdir2=7;
+int grippwm2=6;
 
-int grippwm1=4, grippwm2=7;
-int gripdir1=26, gripdir2=6;
 
-int basepwm=9, wristpwm=2;
-int basedir=8, wristdir=22;
+int basedir=5;
+int basepwm=4
+int wristdir=3;
+int wristpwm=2;
+
+
 
 void arm_msg( const pcl_msgs::Vertices& cmd_msg)
 {
