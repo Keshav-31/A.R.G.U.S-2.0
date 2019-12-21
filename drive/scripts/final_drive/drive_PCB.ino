@@ -6,20 +6,21 @@
 //#define RH_ENCODER_B 5
 //#define LH_ENCODER_A 2
 //#define LH_ENCODER_B 4
+
+#define Dir1a 13
 #define Pwm1a 12
+#define Dir2a 11
 #define Pwm2a 10
-#define Dir1a 11
-#define Dir2a 9
 
+#define Dir1b 9
 #define Pwm1b 8
+#define Dir2b 7
 #define Pwm2b 6
-#define Dir1b 7
-#define Dir2b 5
 
+#define Dir1c 5
 #define Pwm1c 4
+#define Dir2c 3
 #define Pwm2c 2
-#define Dir1c 30
-#define Dir2c 22
 
 
 #if (ARDUINO >= 100)
