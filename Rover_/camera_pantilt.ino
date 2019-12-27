@@ -32,12 +32,12 @@ void pan_msg( const pcl_msgs::Vertices& cmd_msg)
     if(cmd_msg.vertices[2]==1)
     {
       digitalWrite(directionPin, 0);
-      analogWrite(pwmPin, 255);
+      analogWrite(pwmPin, 100);
     }
     if(cmd_msg.vertices[2]==2)
     {
       digitalWrite(directionPin, 1);
-      analogWrite(pwmPin, 255);
+      analogWrite(pwmPin, 100);
     }
 
  
