@@ -4,7 +4,7 @@ from sensor_msgs.msg import Joy
 from pcl_msgs.msg import Vertices
 from numpy import interp
 arm = Vertices()
-arm.vertices = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+arm.vertices = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 actuator_x=0
 actuator_y=0
 base=0
@@ -29,7 +29,7 @@ def move_base(data):
         
         if(data.buttons[4]==1):
             base_axis=data.axes[3]
-            base_pwm= interp(base_axis,[-1,1],[-150,150])
+            base_pwm= interp(base_axis,[-1,1],[-180,180])
             if(base_pwm>0) :
                 base=1
             if(base_pwm<0):
@@ -52,7 +52,7 @@ def move_gripper(data):
        #wu = data.buttons[0]
         #wd = data.buttons[2]
         wrist_axes= data.axes[4]
-        wrist_pwm = interp(wrist_axes,[-1,1],[-150,150])
+        wrist_pwm = interp(wrist_axes,[-1,1],[-255,255])
         
 
         wr = data.buttons[1]
@@ -68,11 +68,14 @@ def move_gripper(data):
         if(wu == 0 and wd == 1) :
                 wrist = 2'''
         
-        if(wrist_pwm>0) :
+        if(wrist_pwm>8) :
             wrist=1
         if(wrist_pwm<0):
             wrist=2
             wrist_pwm=wrist_pwm*-1
+	    if(wrist_pwm<9):
+		wrist_pwm=0
+			
         if(wrist_pwm==0):
             wrist=0
 
@@ -103,22 +106,30 @@ def move_actuators(data):
         x = data.axes[0]
         y = data.axes[1]
 
+        act_pwm = interp(x,[-1,1],[-255,255])
+        act_pwm1 = interp(y,[-1,1],[-255,255])
+
         if(data.buttons[13]==0 and data.buttons[14]==0 and data.buttons[15]==0 and data.buttons[16]==0):
-            if(y==1) :
+            if(y>0) :
                 actuator_x=2
                 actuator_y=2
-            if(y==-1):
+                arm.vertices[9] = act_pwm1
+            if(y<0):
+                actuator_x=1
+                actuator_y=1
+                arm.vertices[9] = act_pwm1*-1
+            if(x>0):
                 actuator_x=1
                 actuator_y=2
-            if(x==1):
-                actuator_x=1
-                actuator_y=1
-            if(x==-1):
+                arm.vertices[9] = act_pwm
+            if(x<0):
                 actuator_x=2
                 actuator_y=1
+                arm.vertices[9] = act_pwm * -1
             if(x==0 and y==0):
                 actuator_x=0
                 actuator_y=0
+                arm.vertices[9] = 0
 
         
         
@@ -128,7 +139,7 @@ def move_actuators(data):
 def check_typing(msg):
         a=msg.buttons[8]
         if(a==1) :
-                t=1
+                t=2
         else :
                 t=0
         arm.vertices[6]=t
