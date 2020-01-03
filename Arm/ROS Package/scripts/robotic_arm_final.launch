@@ -10,5 +10,5 @@
     <param name="button_mapping" type="str" value="=" />
     <param name="axis_mapping" type="str" value="=" />
   </node>
-  <node name="arm_control" pkg="arm" type="final_arm.py" />
+  <node name="arm_control" pkg="arm" type="final_arm2.py" />
  </launch>
