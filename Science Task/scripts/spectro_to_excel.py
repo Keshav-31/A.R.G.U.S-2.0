@@ -33,7 +33,7 @@ def callback(data):
         
   
         # write operation perform 
-        worksheet.write(row, column, str(i)) 
+        worksheet.write(row, column, i) 
   
         # incrementing the value of row by one 
         # with each iteratons. 
