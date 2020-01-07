@@ -12,7 +12,7 @@ pwm=[0,0,0,0]
 drivex=drive_msg()
 
 def find_pwmtest4(msg):
-    factor = 1
+    factor = 0.7
     pwmdir=1.0
     pwmtotal=1.0
     #print("a")
@@ -28,7 +28,7 @@ def find_pwmtest4(msg):
             pwmtotal=((Rp*-1)+1)*255*(-1)
         #pwmdir=interp(msg.axes[0],[-1,1],[-155,155])
 	if (msg.buttons[3] == 1):
-	    factor = 2
+	    factor = 1
 	pwmdir=(msg.axes[0] * pwmtotal * factor * -1)
         #rospy.loginfo(pwmdir)
         #rospy.loginfo(pwmtotal)
@@ -193,7 +193,7 @@ def callback(msg):
     drivex.rpwm = pwm[1]
     drivex.ldir = bool(pwm[2])
     drivex.rdir = bool(pwm[3])
-    pub = rospy.Publisher('rover_drive', drive_msg ,queue_size=10)  
+    pub = rospy.Publisher('rover_drive', drive_msg ,queue_size=1)  
     pub.publish(drivex)
     rate.sleep()
     #rospy.loginfo("I heard %f",msg.buttons[])
