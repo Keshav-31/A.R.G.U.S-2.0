@@ -36,12 +36,12 @@ def find_pwmtest4(msg):
         pwm[3]=0
         pwm[0]=0
         pwm[1]=0
-        if(pwmtotal>=0):
-            leftpwm=pwmtotal+pwmdir
-            rightpwm=pwmtotal-pwmdir
-        else:
-            leftpwm=pwmtotal-pwmdir
-            rightpwm=pwmtotal+pwmdir
+        #if(pwmtotal>=0):
+        leftpwm=pwmtotal+pwmdir
+        rightpwm=pwmtotal-pwmdir
+        #else:
+        #    leftpwm=pwmtotal-pwmdir
+        #    rightpwm=pwmtotal+pwmdir
         print(pwmtotal)
         if(leftpwm<0):
             pwm[2]=1
@@ -206,4 +206,3 @@ def listener():
 
 if __name__ == '__main__':
     listener()
-
